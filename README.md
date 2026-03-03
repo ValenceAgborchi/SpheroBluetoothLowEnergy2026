@@ -300,7 +300,7 @@ MIT License - feel free to use this code for learning and projects.
 **Valence Agborchi**
 - LinkedIn: www.linkedin.com/in/valenceagborchi
 - GitHub: https://github.com/ValenceAgborchi
-- Email: agbo7696#@mylaurier.ca
+- Email: agbo7696@mylaurier.ca
 
 ## Acknowledgments
 
