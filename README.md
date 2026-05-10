@@ -1,7 +1,7 @@
 # Sphero BLE Robot Controller
 
-Python-based wireless controller for Sphero robots using Bluetooth Low Energy (BLE) protocol.
-A Neuroscience Research Lab project at Wilfrid Laurier University 
+-Python-based wireless controller for Sphero robots using Bluetooth Low Energy (BLE) protocol.
+-A Neuroscience Research Lab project at Wilfrid Laurier University 
 
 ## Overview
 
