@@ -9,7 +9,7 @@ def main():
     print()
     
     # Create controller
-    print("📡 Initializing Sphero Controller...")
+    print("Initializing Sphero Controller...")
     controller = SpheroController(mock_mode=False)
     
     # Connect to Sphero
