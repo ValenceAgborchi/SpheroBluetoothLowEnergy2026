@@ -8,24 +8,37 @@ h1 {
     
 }
 
-
 .anchor {
     color: aliceblue;
- 
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
-.connect {
-    border-color: antiquewhite;
+.anchor:hover {
+    background-color: rgba(255,255,255,0.1);
 }
 
-.connect:hover {
-    color: black;
-}
 
+
+
+
+#console {
+    width: 450px;
+    height: 100px;
+    resize: none;
+    overflow-y: auto;
+    background-color: black;
+    color: #00ff00;
+    font-family: "Inter", sans-serif;
+    padding: 10px;
+    margin-bottom: 120px;
+}
 
 .red {
     border-color: red;
-    padding: 15px 15px;
+
 }
 
 .red:hover {
@@ -65,9 +78,7 @@ h1 {
 
 }
 
-textarea {
-    
-}
+
 
 .buttonclass {
     display: flex;
