@@ -3,10 +3,19 @@ Sphero Robot BLE Controller
 Uses spherov2 library for educational BLE communication with Sphero robots.
 This implementation allows both real robot control and mock mode for testing.
 """
-
+#Imports the scanner_module from spherov2 package
+#Scanner module searches for and detects nearby sphero robots
 from spherov2 import scanner
+
+#Imports the main high level API library used to control sphero rohot & issue commands
 from spherov2.sphero_edu import SpheroEduAPI
+
+#Imports the color class from the sphero library
+#green = Color(0, 255, 0)
 from spherov2.types import Color
+
+#Import python time module for delays
+#time.sleep(3) sleep for 3 seconds
 import time
 from typing import Optional
 
@@ -18,7 +27,7 @@ class SpheroController:
     This class handles:
     - Connection to Sphero via Bluetooth Low Energy (BLE)
     - Basic movement commands (roll, spin, stop)
-    - LED colour control
+    - LED color control
     - Error handling and connection management
     """
     
@@ -107,12 +116,12 @@ class SpheroController:
         except Exception as e:
             print(f"⚠ Disconnect error: {e}")
     
-    def set_led_colour(self, red: int, green: int, blue: int):
+    def set_led_color(self, red: int, green: int, blue: int):
         """
-        Set the main LED colour.
+        Set the main LED color.
         
         BLE Explanation: This writes RGB values to the LED characteristic.
-        The Sphero protocol expects values 0-255 for each colour channel.
+        The Sphero protocol expects values 0-255 for each color channel.
         
         Args:
             red: Red value (0-255)
@@ -218,10 +227,10 @@ class SpheroController:
         
         print("\n Starting the demo pattern..")
         
-        # Flash colours
+        # Flash colors
         colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
-        for r, g, b in colours:
-            self.set_led_colour(r, g, b)
+        for r, g, b in colors:
+            self.set_led_color(r, g, b)
             time.sleep(0.5)
         
         # Move in a square
@@ -236,7 +245,7 @@ class SpheroController:
         
         # Stop and set to purple
         self.stop()
-        self.set_led_colour(128, 0, 128)
+        self.set_led_color(128, 0, 128)
         print("✓ Demo complete!")
 
 
@@ -246,7 +255,7 @@ if __name__ == "__main__":
     print("=== MOCK MODE TEST ===")
     controller = SpheroController(mock_mode=True)
     controller.connect()
-    controller.set_led_colour(255, 0, 0)
+    controller.set_led_color(255, 0, 0)
     controller.roll(100, 0, 2)
     controller.spin(180, 1)
     controller.stop()
