@@ -219,13 +219,13 @@ class SpheroController:
     def demo_pattern(self):
         """
         Run a demo pattern to show the robot is working.
-        This is great for your professor demo!
+        This is great for your professor demo
         """
         if not self.is_connected:
             print(" Not connected to Sphero")
             return
         
-        print("\n Starting the demo pattern..")
+        print("\n Starting the demo pattern ")
         
         # Flash colors
         colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]

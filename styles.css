@@ -1,11 +1,10 @@
 h1 {
     text-align: center;
     font-size: 80px;
-    font-weight: 200px;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    
-    
-    
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: aliceblue;
     
 }
 
@@ -21,17 +20,23 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    
+    
 
 
 
+}
+
+textarea {
+    
 }
 
 .buttonclass {
     display: flex;
     justify-content: center;
     border-radius: 50%;
-    gap: 10px;
+    gap: 30px;
+    
     
     
 
@@ -39,7 +44,7 @@ h1 {
 
 
 body {
-    background-color: #1e1e58;
+    background-color: #111827;
 
   
 }
