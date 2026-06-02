@@ -14,6 +14,44 @@ h1 {
  
 }
 
+.connect {
+    border-color: antiquewhite;
+}
+
+.connect:hover {
+    color: black;
+}
+
+
+.red {
+    border-color: red;
+    padding: 15px 15px;
+}
+
+.red:hover {
+    background-color: red;
+}
+
+.blue {
+   
+    border-color: blue;
+
+}
+
+.blue:hover {
+    background-color: blue;
+}
+
+.green {
+    border-color: green;
+
+}
+
+.green:hover {
+    background-color: green;
+
+}
+
 
 
 .container {
@@ -43,9 +81,9 @@ textarea {
 }
 
 
+
+
 body {
     background-color: #111827;
-
-  
 }
 
