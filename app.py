@@ -19,6 +19,17 @@ def disconnect():
     controller.disconnect()
     return jsonify({'success': True})
 
+@app.route('/roll', methods=['POST'])
+def roll():
+    controller.roll(100, 0, 2)
+    return jsonify({'success': True})
 
+@app.route('/spin', methods=['POST'])
+def spin():
+    controller.spin(360, 2)
+    return jsonify({'success': True})
 
-
+@app.route('/stop', methods=['POST'])
+def stop():
+    controller.stop(360, 2)
+    return jsonify({'success': True})
