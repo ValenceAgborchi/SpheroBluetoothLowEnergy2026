@@ -1,26 +1,18 @@
 h1 {
     text-align: center;
-    font-size: 80px;
+    font-size: 50px;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     color: aliceblue;
     
+  
 }
 
-.anchor {
-    color: aliceblue;
-    text-decoration: none;
-    padding: 10px 12px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
+#titles {
+    color: white;
+    font-family: "Inter", sans-serif;
 }
-
-.anchor:hover {
-    background-color: rgba(255,255,255,0.1);
-}
-
-
 
 
 
@@ -31,12 +23,13 @@ h1 {
     overflow-y: auto;
     background-color: black;
     color: #00ff00;
-    font-family: "Inter", sans-serif;
+    font-family: monospace;
     padding: 10px;
-    margin-bottom: 120px;
+    margin-bottom: 60px;
 }
 
 .red {
+    background-color: rgb(168, 32, 32);
     border-color: red;
 
 }
@@ -46,35 +39,119 @@ h1 {
 }
 
 .blue {
-   
+    background-color: rgb(37, 37, 156);
     border-color: blue;
 
 }
 
 .blue:hover {
-    background-color: blue;
+    background-color: rgb(10, 10, 198);
 }
 
 .green {
-    border-color: green;
+    background-color:rgb(43, 138, 43) ;
+    border-color: rgb(0, 85, 0);
 
 }
 
 .green:hover {
+    background-color: rgb(4, 107, 4);
+
+}
+
+.movement {
+    width: 80px;
+    height: 50px;
+}
+.movement:hover {
+    background-color: #020918;
+
+}
+
+#roll {
+    background-color: lightblue;
+
+}
+
+#roll:hover {
+    background-color: rgb(10, 180, 237);
+
+}
+
+
+
+
+#spin {
+     background-color: lightblue;
+
+}
+
+#spin:hover {
+    background-color: rgb(10, 180, 237);
+
+}
+
+
+
+#stop {
+  
+    outline: 3px solid white;
+    outline-offset: -4px;
+    background-color: red;
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)
+
+}
+
+#stop:hover {
+  
+
+    background-color: rgb(143, 4, 4);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)
+    
+}
+
+
+
+
+.connections {
+    width: 90px;
+
+}
+
+.connections:hover {
+    background-color: #020918;
+
+}
+
+ 
+#connecttosphero {
     background-color: green;
+
+}
+
+#connecttosphero:hover {
+    background-color: rgb(37, 59, 2);
+
+}
+
+#disconnectsphero {
+    background-color: rgb(192, 19, 19);
+
+}
+
+#disconnectsphero:hover {
+    background-color: rgb(130, 1, 1);
 
 }
 
 
 
 .container {
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
-
-
+    border-color: black;
 
 }
 
@@ -85,13 +162,43 @@ h1 {
     justify-content: center;
     border-radius: 50%;
     gap: 30px;
-    
+    background: transparent;
+    color: white;
     
     
 
 }
 
+button {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 10px;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+}
 
+.terminal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+
+    
+}
+
+.buttongroups {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 280px;
+  margin: 0 auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4)
+}
 
 
 body {

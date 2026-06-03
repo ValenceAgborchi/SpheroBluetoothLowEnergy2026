@@ -4,10 +4,10 @@ Uses spherov2 library for educational BLE communication with Sphero robots.
 This implementation allows both real robot control and mock mode for testing.
 """
 #Imports the scanner_module from spherov2 package
-#Scanner module searches for and detects nearby sphero robots
+
 from spherov2 import scanner
 
-#Imports the main high level API library used to control sphero rohot & issue commands
+#Imports the main high level API library used to control sphero robot & issue commands
 from spherov2.sphero_edu import SpheroEduAPI
 
 #Imports the color class from the sphero library
@@ -52,8 +52,7 @@ class SpheroController:
         2. When found, establishes GATT connection
         3. Creates API wrapper for high-level commands
         
-        Args:
-            timeout: Seconds to wait for connection
+       
             
         Returns:
             True if connected successfully, False otherwise
