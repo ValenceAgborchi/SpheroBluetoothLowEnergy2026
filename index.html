@@ -11,33 +11,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-     <a href="index.html" class="anchor">Home</a>
-     <a href="index2.html" class="anchor">About</a>
-     <a href="index2.html" class="anchor">Contact</a>
-    
-     
-    
-    
-    <h1>Sphero Controller</h1>
-    
-    
+  <h1>Sphero Controller</h1>
 
-    <div class="container">
-        <textarea name="textarea" id="console" readonly></textarea>
+  <div class="container">
+    <textarea name="textarea" id="console" placeholder="Disconnected"></textarea>
+  </div>
 
-    </div>
-    
+  <div class="buttongroups">
+
+    <p id="titles">CONNECTIONS</p>
     <div class="buttonclass">
-    <button>Connect to sphero</button>
-    <button>Roll</button>
-    <button>Spin</button>
-    <button>Stop</button>
-    <button class="red">Red</button>
-    <button class="blue">Blue</button>
-    <button class="green">Green</button>
-    <button>Disconnect Sphero</button>
-
+      <button id="connecttosphero" class="connections">Connect to sphero</button>
+      <button id="disconnectsphero" class="connections">Disconnect Sphero</button>
     </div>
 
+    <p id="titles">MOVEMENT</p>
+    <div class="buttonclass">
+      <button id="roll" class="movement">Roll</button>
+      <button id="spin" class="movement">Spin</button>
+      <button id="stop" class="movement">STOP</button>
+    </div>
+
+    <p id="titles">COLOURS</p>
+    <div class="buttonclass">
+      <button class="red">Red</button>
+      <button class="blue">Blue</button>
+      <button class="green">Green</button>
+    </div>
+
+  </div>
 </body>
 </html>
