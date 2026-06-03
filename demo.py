@@ -15,11 +15,11 @@ def main():
     print()
     
     # Create controller
-    print("📡 Initializing Sphero Controller...")
+    print("Initializing Sphero Controller...")
     controller = SpheroController(mock_mode=False)
     
     # Connect to Sphero
-    print("\n🔍 Attempting to connect to Sphero via Bluetooth LE...")
+    print("\n Attempting to connect to Sphero via Bluetooth LE...")
     print("(Make sure your Sphero is turned on!)")
     
     if not controller.connect(timeout=15):
