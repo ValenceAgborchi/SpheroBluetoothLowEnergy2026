@@ -30,7 +30,8 @@ sphero-ble-controller/
 ├── sphero_controller.py    # Main controller class
 ├── test_sphero.py          # PyTest test suite (13 tests)
 ├── demo.py                 # Interactive demonstration script
-└── README.md              # This file
+├── app.py                  # Flask File with routes that call SpheroController methods
+└── README.md               # This file
 ```
 
 
