@@ -159,4 +159,5 @@ class TestBLEConcepts:
 # Run tests with: pytest test_sphero.py -v
 # The -v flag gives verbose output showing each test
 if __name__ == "__main__":
+
     pytest.main([__file__, "-v"])
