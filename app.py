@@ -1,12 +1,25 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from sphero_controller import SpheroController
-
+import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["http://localhost:8080"])
 controller = SpheroController(mock_mode=False)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
+@app.route('/')
+def index():
+    return send_from_directory(BASE_DIR, 'index.html')
+
+@app.route('/styles.css')
+def styles():
+    return send_from_directory(BASE_DIR, 'styles.css')
+
+@app.route('/index.js')
+def js():
+    return send_from_directory(BASE_DIR, 'index.js')
 
 @app.route('/connect', methods=['POST'])
 def connect():

@@ -1,12 +1,12 @@
 document.getElementById('connecttosphero').addEventListener('click', async () => {
-    const result = await fetch('http://localhost:5000/connect', {method:'POST'})
+    const result = await fetch('http://127.0.0.1:5000/connect', {method:'POST'})
     const data = await result.json()
     document.getElementById('console').value += '\n Connected!'
 
 })
 
 document.getElementById('disconnectsphero').addEventListener('click', async () => {
-    const result = await fetch('http://localhost:5000/disconnect', {method: 'POST'})
+    const result = await fetch('http://127.0.0.1:5000/disconnect', {method: 'POST'})
     const data = await result.json()
     document.getElementById('console').value += '\n Disconnected'
 
@@ -14,7 +14,7 @@ document.getElementById('disconnectsphero').addEventListener('click', async () =
 
 
 document.getElementById('red').addEventListener('click', async () => {
-    const result = await fetch('http://localhost:5000/colour', {
+    const result = await fetch('http://127.0.0.1:5000/colour', {
         method: 'POST', 
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({r: 255, g: 0, b: 0})
@@ -24,7 +24,7 @@ document.getElementById('red').addEventListener('click', async () => {
 })
 
 document.getElementById('green').addEventListener('click', async () => {
-    const result = await fetch('http://localhost:5000/colour', {
+    const result = await fetch('http://127.0.0.1:5000/colour', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({r: 0, g: 255, b: 0})
@@ -35,7 +35,7 @@ document.getElementById('green').addEventListener('click', async () => {
 
 
 document.getElementById('blue').addEventListener('click', async () => {
-    const result = await fetch('http://localhost:5000/colour', {
+    const result = await fetch('http://127.0.0.1:5000/colour', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({r: 0, g: 0, b: 255})
@@ -49,20 +49,20 @@ document.getElementById('blue').addEventListener('click', async () => {
 
 
 document.getElementById('roll').addEventListener('click', async () => {
-    const result = await fetch('http://localhost:5000/roll', {method: 'POST'})
+    const result = await fetch('http://127.0.0.1:5000/roll', {method: 'POST'})
     const data = await result.json()
     document.getElementById('console').value += '\n Rolling......'
 
 })
 
 document.getElementById('spin').addEventListener('click', async () => {
-    const result = await fetch('http://localhost:5000/spin', {method: 'POST'})
+    const result = await fetch('http://127.0.0.1:5000/spin', {method: 'POST'})
     const data = await result.json()
     document.getElementById('console').value += '\n Spinning...'
 })
 
 document.getElementById('stop').addEventListener('click', async () => {
-    const result = await fetch('http://localhost:5000/stop', {method: 'POST'})
+    const result = await fetch('http://127.0.0.1:5000/stop', {method: 'POST'})
     const data = await result.json()
     document.getElementById('console').value += '\n Stopped.'
 })
