@@ -1,9 +1,3 @@
-"""
-Sphero Demo Script for Professor Meeting
-Demonstrates working Sphero BLE connection and control.
-Run this during your meeting to show the robot in action!
-"""
-
 from sphero_controller import SpheroController
 import time
 
@@ -14,7 +8,7 @@ def main():
     print("=" * 60)
     print()
     
-    # Create controller
+    # Create Controller
     print("Initializing Sphero Controller...")
     controller = SpheroController(mock_mode=False)
     
