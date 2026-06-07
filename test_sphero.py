@@ -41,25 +41,25 @@ class TestSpheroController:
         """Test LED color command formatting."""
         # These should not raise exceptions in mock mode
         controller.set_led_color(255, 0, 0)  # Red
-        controller.set_led_color(0, 255, 0)  # Green
-        controller.set_led_color(0, 0, 255)  # Blue
-        # If we get here without exception, test passes
-        assert True
+        assert controller.current_color == (255, 0, 0)
+
+        controller.set_led_color(0, 0, 255)        
+        assert controller.current_color == (0, 0, 255)
     
     def test_led_color_requires_connection(self):
         """Test that LED command fails without connection."""
         controller = SpheroController(mock_mode=True)
         # Don't connect
         controller.set_led_color(255, 0, 0)
-        # Should handle gracefully (prints error, doesn't crash)
-        assert True
+
+        assert controller.current_color is None
     
     def test_roll_command(self, controller):
         """Test basic roll command."""
-        controller.roll(100, 0)  # Speed 100, heading 0°
-        controller.roll(150, 90)  # Speed 150, heading 90°
-        controller.roll(200, 180, duration=2)  # With duration
-        assert True
+        controller.roll(100, 90)
+        assert controller.current_speed == 100
+        assert controller.current_heading == 90
+    
     
     def test_spin_command(self, controller):
         """Test spin command."""
@@ -73,7 +73,7 @@ class TestSpheroController:
         controller.roll(100, 0)
         time.sleep(0.1)
         controller.stop()
-        assert True
+        assert controller.current_speed == 0
     
     def test_command_sequence(self, controller):
         """Test a sequence of commands (like a real program)."""
@@ -117,43 +117,35 @@ class TestBLEConcepts:
     """
     
     def test_heading_range(self):
+
         """Verify heading values are in valid range (0-359)."""
         controller = SpheroController(mock_mode=True)
         controller.connect()
-        
-        # Valid headings
         valid_headings = [0, 90, 180, 270, 359]
         for heading in valid_headings:
-            controller.roll(100, heading)  # Should not crash
-        
+            controller.roll(100, heading)
+            assert controller.current_heading == heading
         controller.disconnect()
-        assert True
     
+
     def test_speed_range(self):
-        """Verify speed values work in expected range (0-255)."""
+
         controller = SpheroController(mock_mode=True)
         controller.connect()
-        
-        # Test various speeds
         speeds = [0, 50, 100, 150, 200, 255]
         for speed in speeds:
-            controller.roll(speed, 0)  # Should not crash
-        
+            controller.roll(speed, 0)
+            assert controller.current_speed == speed
         controller.disconnect()
-        assert True
     
     def test_rgb_range(self):
-        """Verify RGB values are in valid range (0-255)."""
         controller = SpheroController(mock_mode=True)
         controller.connect()
-        
-        # Test edge cases
-        controller.set_led_color(0, 0, 0)      # Black (off)
-        controller.set_led_color(255, 255, 255)  # White (max)
-        controller.set_led_color(128, 128, 128)  # Gray (mid)
-        
+        controller.set_led_color(0, 0, 0)
+        assert controller.current_color == (0, 0, 0)
+        controller.set_led_color(255, 255, 255)
+        assert controller.current_color == (255, 255, 255)
         controller.disconnect()
-        assert True
 
 
 # Run tests with: pytest test_sphero.py -v

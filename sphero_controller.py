@@ -1,62 +1,24 @@
-"""
-Sphero Robot BLE Controller
-Uses spherov2 library for educational BLE communication with Sphero robots.
-This implementation allows both real robot control and mock mode for testing.
-"""
-#Imports the scanner_module from spherov2 package
-
 from spherov2 import scanner
-
-#Imports the main high level API library used to control sphero robot & issue commands
 from spherov2.sphero_edu import SpheroEduAPI
-
-#Imports the color class from the sphero library
-#green = Color(0, 255, 0)
 from spherov2.types import Color
-
-#Import python time module for delays
-#time.sleep(3) sleep for 3 seconds
 import time
 from typing import Optional
 
 
 class SpheroController:
-    """
-    Main controller class for Sphero robot.
-    
-    This class handles:
-    - Connection to Sphero via Bluetooth Low Energy (BLE)
-    - Basic movement commands (roll, spin, stop)
-    - LED color control
-    - Error handling and connection management
-    """
-    
+
     def __init__(self, mock_mode: bool = False):
-        """
-        Initialize the Sphero controller.
-        
-        Args:
-            mock_mode: If True, runs in test mode without real robot
-        """
         self.mock_mode = mock_mode
         self.toy = None
         self.api = None
         self.is_connected = False
+        self.current_color = None
+        self.current_speed = None
+        self.current_heading = None
         
+
     def connect(self, timeout: int = 10) -> bool:
-        """
-        Connect to a Sphero robot via BLE.
-        
-        How it works:
-        1. Scanner searches for BLE devices advertising Sphero services
-        2. When found, establishes GATT connection
-        3. Creates API wrapper for high-level commands
-        
-       
-            
-        Returns:
-            True if connected successfully, False otherwise
-        """
+
         if self.mock_mode:
             print("[MOCK MODE] Simulating connection to Sphero...")
             self.is_connected = True
@@ -66,10 +28,6 @@ class SpheroController:
             print("Scanning for Sphero robots...")
             print("Make sure your Sphero is powered on and nearby!")
             
-            # scanner.find_toy() uses bleak under the hood to:
-            # - Scan for BLE advertisements
-            # - Filter for Sphero-specific service UUIDs
-            # - Return first matching device
             self.toy = scanner.find_toy(timeout=timeout)
             
             if self.toy is None:
@@ -78,8 +36,7 @@ class SpheroController:
             
             print(f"✓ Found Sphero: {self.toy.name}")
             
-            # SpheroEduAPI wraps low-level BLE commands into easy functions
-            # It handles the BLE protocol: writing to characteristics, etc.
+         
             self.api = SpheroEduAPI(self.toy)
             self.api.__enter__()  # Initialize connection
             
@@ -97,10 +54,7 @@ class SpheroController:
             return False
     
     def disconnect(self):
-        """
-        Safely disconnect from the Sphero.
-        Always call this when done to free the BLE connection.
-        """
+
         if self.mock_mode:
             print("[MOCK MODE] Simulating disconnect...")
             self.is_connected = False
@@ -115,50 +69,30 @@ class SpheroController:
         except Exception as e:
             print(f"⚠ Disconnect error: {e}")
     
+
+
+
     def set_led_color(self, red: int, green: int, blue: int):
-        """
-        Set the main LED color.
-        
-        BLE Explanation: This writes RGB values to the LED characteristic.
-        The Sphero protocol expects values 0-255 for each color channel.
-        
-        Args:
-            red: Red value (0-255)
-            green: Green value (0-255)
-            blue: Blue value (0-255)
-        """
+     
         if not self.is_connected:
             print(" Not connected to Sphero")
             return
+        
+        self.current_color = (red, green, blue) 
         
         if self.mock_mode:
             print(f"[MOCK MODE] Setting LED to RGB({red}, {green}, {blue})")
             return
-        
-        try:
-            # Color() creates a color object that the API sends to the robot
-            self.api.set_main_led(Color(red, green, blue))
-            print(f"✓ LED set to RGB({red}, {green}, {blue})")
-        except Exception as e:
-            print(f" LED command failed: {e}")
     
+
+
     def roll(self, speed: int, heading: int, duration: float = 0):
-        """
-        Make the Sphero roll in a direction.
-        
-        BLE Explanation: This sends a drive command with:
-        - Speed (0-255): How fast to move
-        - Heading (0-359): Direction in degrees (0=forward, 90=right, etc.)
-        - Duration: How long to roll (0 = until stopped)
-        
-        Args:
-            speed: Speed from 0-255 (0=stop, 255=max)
-            heading: Direction in degrees (0-359)
-            duration: Seconds to roll (0 = indefinite)
-        """
+    
         if not self.is_connected:
             print(" Not connected to Sphero")
             return
+        self.current_speed = speed
+        self.current_heading = heading
         
         if self.mock_mode:
             print(f"[MOCK MODE] Rolling at speed {speed}, heading {heading}°")
@@ -172,15 +106,12 @@ class SpheroController:
             print(f"✓ Rolling at speed {speed}, heading {heading}°")
         except Exception as e:
             print(f" Roll command failed: {e}")
-    
-    def spin(self, angle: int, duration: float = 1.0):
-        """
-        Spin the Sphero by a specific angle.
         
-        Args:
-            angle: Degrees to spin (positive = clockwise)
-            duration: Seconds to complete the spin
-        """
+        
+    
+
+
+    def spin(self, angle: int, duration: float = 1.0):
         if not self.is_connected:
             print(" Not connected to Sphero")
             return
@@ -197,12 +128,12 @@ class SpheroController:
     
     def stop(self):
         """
-        Stop all movement immediately.
         Sends speed=0 command to drive characteristic.
         """
         if not self.is_connected:
             print(" Not connected to Sphero")
             return
+        self.current_speed = 0
         
         if self.mock_mode:
             print("[MOCK MODE] Stopping movement")
@@ -214,35 +145,34 @@ class SpheroController:
             print("✓ Stopped")
         except Exception as e:
             print(f" Stop command failed: {e}")
+        
+        
     
     def demo_pattern(self):
-        """
-        Run a demo pattern to show the robot is working.
-        This is great for your professor demo
-        """
+
         if not self.is_connected:
             print(" Not connected to Sphero")
             return
         
         print("\n Starting the demo pattern ")
         
-        # Flash colors
+        
         colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
         for r, g, b in colors:
             self.set_led_color(r, g, b)
             time.sleep(0.5)
         
-        # Move in a square
+
         print("Moving in a square pattern...")
         for heading in [0, 90, 180, 270]:
             self.roll(100, heading, 1.5)
             time.sleep(2)  # Roll for 1.5s + pause
         
-        # Spin
+     
         self.spin(360, 2)
         time.sleep(2)
         
-        # Stop and set to purple
+   
         self.stop()
         self.set_led_color(128, 0, 128)
         print("✓ Demo complete!")
