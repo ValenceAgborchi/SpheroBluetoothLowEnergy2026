@@ -30,7 +30,10 @@ sphero-ble-controller/
 ├── sphero_controller.py    # Main controller class
 ├── test_sphero.py          # PyTest test suite (13 tests)
 ├── demo.py                 # Interactive demonstration script
-├── app.py                  # Flask File with routes that call SpheroController methods
+├── app.py                  # Flask backend with routes that call SpheroController methods
+├── index.html              # Web interface layout for Sphero control dashboard
+├── styles.css              # Frontend styling, component layout, and UI design   
+├── index.js                # Client-side logic for API requests, event handling, and UI updates
 └── README.md               # This file
 ```
 
